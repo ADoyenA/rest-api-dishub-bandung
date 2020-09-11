@@ -5,7 +5,6 @@ class Dokumentasi{
     private $conn;
     
     private  $dbTable = "dokumentasi";
-    private  $ddTableFoto = "dokumentasi";
 
 
     public $ID_dokumentasi;
@@ -25,8 +24,7 @@ class Dokumentasi{
      // GET ALL
      public function getDokumentasi()
      {
-        $sqlQuery = "SELECT d.ID_dokumentasi as dok_id, d.judul_dokumentasi, d.img_cover, d.text_dokumentasi, d.waktu_upload, foto-kegiatan.foto_kegiatan, foto-kegiatan.ID_foto_kegiatan as id_fokeg, d.ID_admin FROM " . $this->dbTable . " AS d
-        LEFT JOIN foto-kegiatan ON foto-kegiatan.ID = d.dok_id";
+        $sqlQuery = "SELECT * FROM ".$this->dbTable."";
         $stmt = $this->conn->prepare($sqlQuery);
         $stmt->execute();
         return $stmt;
