@@ -6,7 +6,7 @@ class fotoKegiatan {
     private  $dbTable = "foto_kegiatan";
 
 
-    // public $ID_dokumentasi;
+    public $ID_dokumentasi;
     // public $img_cover;
     // public $judul_dokumentasi;
     // public $waktu_upload;
@@ -130,20 +130,20 @@ class fotoKegiatan {
     // }
 
      // DELETE
-    //  function deleteDokumentasi()
-    //  {
-    //     $sqlQuery = "DELETE FROM " . $this->dbTable. " WHERE ID_dokumentasi = ?";
-    //     $stmt = $this->conn->prepare($sqlQuery);
+     function deleteFotoKegiatan()
+     {
+        $sqlQuery = "DELETE FROM " . $this->dbTable. " WHERE ID_dokumentasi = ?";
+        $stmt = $this->conn->prepare($sqlQuery);
     
-    //     $this->ID_dokumentasi=htmlspecialchars(strip_tags($this->ID_dokumentasi));
+        $this->ID_dokumentasi=htmlspecialchars(strip_tags($this->ID_dokumentasi));
     
-    //     $stmt->bindParam(1, $this->ID_dokumentasi);
+        $stmt->bindParam(1, $this->ID_dokumentasi);
     
-    //     if($stmt->execute()){
-    //         return true;
-    //     }
-    //     return false;
-    // }
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
+    }
 
 
 }

@@ -6,20 +6,25 @@
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
     include_once '../../config/Database.php';
-    include_once '../../class/Informasi.php';
+    include_once '../../class/Dokumentasi.php';
+    include_once '../../class/fotoKegiatan.php';
     
     $database = new Database();
     $db = $database->getConnection();
     
-    $item = new Informasi($db);
+    $item = new Dokumentasi($db);
+    $item2 = new fotoKegiatan($db);
     
     $data = json_decode(file_get_contents("php://input"));
     
-    $item->ID_informasi = $data->ID_informasi;
+    $item->ID_dokumentasi = $data->ID_dokumentasi;
+    $item2->ID_dokumentasi = $data->ID_dokumentasi;
+
     
-    if($item->deleteInformasi()){
-        echo json_encode("Employee deleted.");
+    if($item2->deleteFotoKegiatan()){
+        $item->deleteDokumentasi();
+        echo json_encode("Data Dokumentasi dan Foto Kegiatan telah dihapus");
     } else{
-        echo json_encode("Data could not be deleted");
+        echo json_encode("Data Dokumentasi dan Foto Kegiatan tidak dapat dihapus");
     }
 ?>
