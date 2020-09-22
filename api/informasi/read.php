@@ -30,6 +30,7 @@
                 "judul_informasi" => $judul_informasi,
                 "kategori" => $kategori,
                 "text_informasi" => $text_informasi,
+                "waktu_upload" => $waktu_upload,
                 "ID_admin" => $ID_admin
             );
 

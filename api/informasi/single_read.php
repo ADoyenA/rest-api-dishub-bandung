@@ -25,6 +25,7 @@
             "judul_informasi" => $item->judul_informasi,
             "kategori" => $item->kategori,
             "text_informasi" => $item->text_informasi,
+            "waktu_upload" => $item->waktu_upload,
             "ID_admin" => $item->ID_admin
         );
       
@@ -34,5 +35,5 @@
       
     else{
         http_response_code(404);
-        echo json_encode("Employee not found.");
+        echo json_encode("Informasi not found.");
     }

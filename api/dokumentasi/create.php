@@ -18,7 +18,7 @@
     $item->judul_dokumentasi = $data->judul_dokumentasi;
     $item->img_cover = $data->img_cover;
     $item->text_dokumentasi = $data->text_dokumentasi;
-    $item->waktu_upload = date('Y-m-d H:i:s');
+    $item->waktu_upload = date('Y-m-d');
     $item->ID_admin = $data->ID_admin;
     
     if($item->createDokumentasi()){

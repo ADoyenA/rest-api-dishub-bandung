@@ -6,26 +6,27 @@
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
     include_once '../../config/Database.php';
-    include_once '../../class/Informasi.php';
+    include_once '../../class/Dokumentasi.php';
     
     $database = new Database();
     $db = $database->getConnection();
-    
-    $item = new Informasi($db);
-    
+
+    $item = new Dokumentasi($db);
+
     $data = json_decode(file_get_contents("php://input"));
+
+    $item->ID_dokumentasi = $data->ID_dokumentasi;
     
-    $item->ID_informasi = $data->ID_informasi;
-    
-    // Informasi values
-    $item->img = $data->img;
-    $item->judul_informasi = $data->judul_informasi;
-    $item->kategori = $data->kategori;
-    $item->text_informasi = $data->text_informasi;
+    // Dokumentasi values
+    $item->judul_dokumentasi = $data->judul_dokumentasi;
+    $item->img_cover = $data->img_cover;
+    $item->text_dokumentasi = $data->text_dokumentasi;
+    $item->waktu_upload = date('Y-m-d');
     $item->ID_admin = $data->ID_admin;
+    var_dump($item->updateDokumentasi());
     
-    if($item->updateInformasi()){
-        echo json_encode("informasi data telah dirubah.");
+    if($item->updateDokumentasi()){
+        echo json_encode("Dokumentasi data telah dirubah.");
     } else{
-        echo json_encode("Data informasi tidak bisa dirubah");
+        echo json_encode("Data dokumentasi tidak bisa dirubah");
     }

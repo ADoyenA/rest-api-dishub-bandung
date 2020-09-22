@@ -7,24 +7,20 @@
     
     include_once '../../config/Database.php';
     include_once '../../class/Dokumentasi.php';
-    include_once '../../class/fotoKegiatan.php';
     
     $database = new Database();
     $db = $database->getConnection();
     
     $item = new Dokumentasi($db);
-    $item2 = new fotoKegiatan($db);
     
     $data = json_decode(file_get_contents("php://input"));
     
     $item->ID_dokumentasi = $data->ID_dokumentasi;
-    $item2->ID_dokumentasi = $data->ID_dokumentasi;
 
     
-    if($item2->deleteFotoKegiatan()){
-        $item->deleteDokumentasi();
-        echo json_encode("Data Dokumentasi dan Foto Kegiatan telah dihapus");
+    if($item->deleteDokumentasi()){
+        echo json_encode("Data Dokumentasi telah dihapus");
     } else{
-        echo json_encode("Data Dokumentasi dan Foto Kegiatan tidak dapat dihapus");
+        echo json_encode("Data Dokumentasi tidak dapat dihapus");
     }
 ?>

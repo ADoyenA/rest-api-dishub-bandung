@@ -12,9 +12,7 @@ class Dokumentasi{
     public $judul_dokumentasi;
     public $waktu_upload;
     public $text_dokumentasi;
-    public $foto_kegiatan;
     public $ID_admin;
-    public $ID_foto_kegiatan;
 
     public function __construct($db)
     {
@@ -99,11 +97,11 @@ class Dokumentasi{
         $sqlQuery = "UPDATE
                     ". $this->dbTable ."
                 SET
-                judul_dokumentasi = :judul_dokumentasi, 
-                img_cover = :img_cover, 
-                text_dokumentasi = :text_dokumentasi, 
-                waktu_upload = :waktu_upload, 
-                ID_admin = :ID_admin
+                    judul_dokumentasi = :judul_dokumentasi, 
+                    img_cover = :img_cover, 
+                    text_dokumentasi = :text_dokumentasi, 
+                    waktu_upload = :waktu_upload, 
+                    ID_admin = :ID_admin
                 WHERE 
                     ID_dokumentasi = :ID_dokumentasi";
     

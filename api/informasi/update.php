@@ -22,6 +22,7 @@
     $item->judul_informasi = $data->judul_informasi;
     $item->kategori = $data->kategori;
     $item->text_informasi = $data->text_informasi;
+    $item->waktu_upload = date('Y-m-d');
     $item->ID_admin = $data->ID_admin;
     
     if($item->updateInformasi()){
