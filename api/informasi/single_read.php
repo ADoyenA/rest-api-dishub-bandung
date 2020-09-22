@@ -19,7 +19,7 @@
 
     if($item->judul_informasi != null){
         // create array
-        $imformasi_arr = array(
+        $informasi_arr = array(
             "ID_informasi" =>  $item->ID_informasi,
             "img" => $item->img,
             "judul_informasi" => $item->judul_informasi,
@@ -30,7 +30,7 @@
         );
       
         http_response_code(200);
-        echo json_encode($imformasi_arr);
+        echo json_encode($informasi_arr);
     }
       
     else{
