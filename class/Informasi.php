@@ -11,6 +11,7 @@ class Informasi{
     public $judul_informasi;
     public $kategori;
     public $text_informasi;
+    public $waktu_upload;
     public $ID_admin;
 
     public function __construct($db)
@@ -37,6 +38,7 @@ class Informasi{
                     judul_informasi = :judul_informasi, 
                     kategori = :kategori, 
                     text_informasi = :text_informasi, 
+                    waktu_upload = :waktu_upload, 
                     ID_admin = :ID_admin";
     
         $stmt = $this->conn->prepare($sqlQuery);
@@ -45,6 +47,7 @@ class Informasi{
         $this->judul_informasi=htmlspecialchars(strip_tags($this->judul_informasi));
         $this->kategori=htmlspecialchars(strip_tags($this->kategori));
         $this->text_informasi=htmlspecialchars(strip_tags($this->text_informasi));
+        $this->waktu_upload=htmlspecialchars(strip_tags($this->waktu_upload));
         $this->ID_admin=htmlspecialchars(strip_tags($this->ID_admin));
     
         // bind data
@@ -52,6 +55,7 @@ class Informasi{
         $stmt->bindParam(":judul_informasi", $this->judul_informasi);
         $stmt->bindParam(":kategori", $this->kategori);
         $stmt->bindParam(":text_informasi", $this->text_informasi);
+        $stmt->bindParam(":waktu_upload", $this->waktu_upload);
         $stmt->bindParam(":ID_admin", $this->ID_admin);
     
         if($stmt->execute()){
@@ -67,7 +71,8 @@ class Informasi{
                     img, 
                     judul_informasi, 
                     kategori, 
-                    text_informasi, 
+                    text_informasi,
+                    waktu_upload,  
                     ID_admin
                   FROM
                     ". $this->db_table ."
@@ -87,6 +92,7 @@ class Informasi{
         $this->judul_informasi = $dataRow['judul_informasi'];
         $this->kategori = $dataRow['kategori'];
         $this->text_informasi = $dataRow['text_informasi'];
+        $this->waktu_upload = $dataRow['waktu_upload'];
         $this->ID_admin = $dataRow['ID_admin'];
     }      
     
@@ -99,7 +105,8 @@ class Informasi{
                     img = :img, 
                     judul_informasi = :judul_informasi, 
                     kategori = :kategori, 
-                    text_informasi = :text_informasi, 
+                    text_informasi = :text_informasi,
+                    waktu_upload = :waktu_upload, 
                     ID_admin = :ID_admin
                 WHERE 
                     ID_informasi = :ID_informasi";
@@ -110,6 +117,7 @@ class Informasi{
         $this->judul_informasi=htmlspecialchars(strip_tags($this->judul_informasi));
         $this->kategori=htmlspecialchars(strip_tags($this->kategori));
         $this->text_informasi=htmlspecialchars(strip_tags($this->text_informasi));
+        $this->waktu_upload=htmlspecialchars(strip_tags($this->waktu_upload));
         $this->ID_admin=htmlspecialchars(strip_tags($this->ID_admin));
         $this->ID_informasi=htmlspecialchars(strip_tags($this->ID_informasi));
     
@@ -118,6 +126,7 @@ class Informasi{
         $stmt->bindParam(":judul_informasi", $this->judul_informasi);
         $stmt->bindParam(":kategori", $this->kategori);
         $stmt->bindParam(":text_informasi", $this->text_informasi);
+        $stmt->bindParam(":waktu_upload", $this->waktu_upload);
         $stmt->bindParam(":ID_admin", $this->ID_admin);
         $stmt->bindParam(":ID_informasi", $this->ID_informasi);
     
