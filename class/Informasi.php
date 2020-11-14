@@ -7,6 +7,8 @@ class Informasi{
     private  $db_table = "informasi";
 
     public $ID_informasi;
+    public $begin;
+    public $row_per_page;
     public $img;
     public $judul_informasi;
     public $kategori;
@@ -62,6 +64,34 @@ class Informasi{
            return true;
         }
         return false;
+     }
+
+
+     //ERROR DI BIND PARAM
+     public function limitInformasi()
+     {
+        $sqlQuery = "SELECT * FROM " . $this->db_table . " LIMIT ?, ?";
+
+        $stmt = $this->conn->prepare($sqlQuery);
+
+        // $this->begin = htmlspecialchars(strip_tags($this->begin));
+        // $this->row_per_page = htmlspecialchars(strip_tags($this->row_per_page));
+        $satu = "1";
+        $dua = "5";
+        $stmt->bindParam(1, $this->begin, PDO::PARAM_INT);
+        $stmt->bindParam(2, $this->row_per_page, PDO::PARAM_INT);
+        // $stmt->execute();
+        $stmt->execute();
+
+        // $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // $this->img = $dataRow['img'];
+        // $this->judul_informasi = $dataRow['judul_informasi'];
+        // $this->kategori = $dataRow['kategori'];
+        // $this->text_informasi = $dataRow['text_informasi'];
+        // $this->waktu_upload = $dataRow['waktu_upload'];
+        // $this->ID_admin = $dataRow['ID_admin'];
+        return $stmt;
      }
 
      public function getSatuInformasi()

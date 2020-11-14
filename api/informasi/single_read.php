@@ -15,7 +15,7 @@
 
     $item->ID_informasi = isset($_GET['ID_informasi']) ? $_GET['ID_informasi'] : die();
   
-    $item->getSatuInformasi();
+    $stmt = $item->getSatuInformasi();
 
     if($item->judul_informasi != null){
         // create array
