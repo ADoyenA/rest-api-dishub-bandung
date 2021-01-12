@@ -26,7 +26,6 @@ $stmt = $item->limitInformasi();
 
 $itemCount = $stmt->rowCount();
 
-var_dump($stmt);
 
 //echo json_encode($itemCount);
 
