@@ -6,12 +6,12 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once '../../config/Database.php';
-include_once '../../class/Informasi.php';
+include_once '../../class/Admin.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
-$item = new Informasi($db);
+$item = new Admin($db);
 
 //$item->ID_informasi = isset($_GET['ID_informasi']) ? $_GET['ID_informasi'] : die();
 $page = $_GET['page'];
@@ -23,7 +23,7 @@ $item->begin = ($page * $item->row_per_page) - $item->row_per_page;
 
 //$item->begin = $page;
 
-$stmt = $item->limitInformasi();
+$stmt = $item->informasi();
 
 $itemCount = $stmt->rowCount();
 

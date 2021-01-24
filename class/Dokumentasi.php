@@ -28,6 +28,14 @@ class Dokumentasi{
         return $stmt;
     }
 
+    public function getNewDokumentasi()
+    {
+        $sqlQuery = "SELECT * FROM ".$this->dbTable."  ORDER BY ID_dokumentasi DESC ";
+        $stmt = $this->conn->prepare($sqlQuery);
+        $stmt->execute();
+        return $stmt;
+    }
+
      // CREATE
      public function createDokumentasi()
      {

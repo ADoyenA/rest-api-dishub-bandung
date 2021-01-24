@@ -17,6 +17,7 @@
 
     $item->action = $data->action;
     $item->data = $data->data;
+    $item->tanggal = $data->tanggal;
     $item->ID_admin = $data->ID_admin;
     
     if($item->createLog()){

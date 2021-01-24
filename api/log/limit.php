@@ -34,6 +34,7 @@ if($itemCount > 0){
             "ID_log" => $ID_log,
             "action" => $action,
             "data" => $data,
+            "tanggal" => $tanggal,
             "ID_admin" => $ID_admin
         );
 

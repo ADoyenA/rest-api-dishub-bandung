@@ -4,11 +4,12 @@ class Informasi{
 
     private $conn;
     
-    private  $db_table = "informasi";
+    private  $dbTable = "informasi";
 
     public $ID_informasi;
     public $begin;
     public $row_per_page;
+    public $orderBy;
     public $img;
     public $judul_informasi;
     public $kategori;
@@ -24,7 +25,15 @@ class Informasi{
      // GET ALL
      public function getInformasi()
      {
-        $sqlQuery = "SELECT * FROM " . $this->db_table . "";
+        $sqlQuery = "SELECT * FROM " . $this->dbTable . "";
+        $stmt = $this->conn->prepare($sqlQuery);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    public function getNewInformasi()
+    {
+        $sqlQuery = "SELECT * FROM " . $this->dbTable . " ORDER BY ID_informasi DESC ";
         $stmt = $this->conn->prepare($sqlQuery);
         $stmt->execute();
         return $stmt;
@@ -34,7 +43,7 @@ class Informasi{
      public function createInformasi()
      {
         $sqlQuery = "INSERT INTO
-                    ". $this->db_table ."
+                    ". $this->dbTable ."
                 SET
                     img = :img, 
                     judul_informasi = :judul_informasi, 
@@ -70,7 +79,10 @@ class Informasi{
      //ERROR DI BIND PARAM
      public function limitInformasi()
      {
-        $sqlQuery = "SELECT * FROM " . $this->db_table . " LIMIT ?, ?";
+        $sqlQuery = "SELECT * FROM " . $this->dbTable . " 
+        ORDER BY 
+            ID_informasi DESC
+        LIMIT ?, ?";
 
         $stmt = $this->conn->prepare($sqlQuery);
 
@@ -78,6 +90,7 @@ class Informasi{
         // $this->row_per_page = htmlspecialchars(strip_tags($this->row_per_page));
         $satu = "1";
         $dua = "5";
+        //$stmt->bindParam(1, $this->orderBy, PDO::PARAM_STR, 10);
         $stmt->bindParam(1, $this->begin, PDO::PARAM_INT);
         $stmt->bindParam(2, $this->row_per_page, PDO::PARAM_INT);
         // $stmt->execute();
@@ -93,6 +106,7 @@ class Informasi{
         // $this->ID_admin = $dataRow['ID_admin'];
         return $stmt;
      }
+     
 
      public function getSatuInformasi()
      {
@@ -105,7 +119,7 @@ class Informasi{
                     waktu_upload,  
                     ID_admin
                   FROM
-                    ". $this->db_table ."
+                    ". $this->dbTable ."
                 WHERE 
                    ID_informasi = ?
                 LIMIT 0,1";
@@ -130,7 +144,7 @@ class Informasi{
      public function updateInformasi()
      {
         $sqlQuery = "UPDATE
-                    ". $this->db_table ."
+                    ". $this->dbTable ."
                 SET
                     img = :img, 
                     judul_informasi = :judul_informasi, 
@@ -169,7 +183,7 @@ class Informasi{
      // DELETE
      function deleteInformasi()
      {
-        $sqlQuery = "DELETE FROM " . $this->db_table . " WHERE ID_informasi = ?";
+        $sqlQuery = "DELETE FROM " . $this->dbTable . " WHERE ID_informasi = ?";
         $stmt = $this->conn->prepare($sqlQuery);
     
         $this->ID_informasi=htmlspecialchars(strip_tags($this->ID_informasi));
