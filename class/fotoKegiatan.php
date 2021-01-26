@@ -51,6 +51,31 @@ class fotoKegiatan {
         return false;
      }
 
+     public function getByIdDokumentasi()
+     {
+        $sqlQuery = "SELECT
+        ID_foto_kegiatan, 
+        foto, 
+        ID_dokumentasi
+    FROM
+        ". $this->dbTable ."
+    WHERE 
+        ID_dokumentasi = ?";
+
+        $stmt = $this->conn->prepare($sqlQuery);
+
+        // $this->begin = htmlspecialchars(strip_tags($this->begin));
+        // $this->row_per_page = htmlspecialchars(strip_tags($this->row_per_page));
+        $satu = "1";
+        $dua = "5";
+        //$stmt->bindParam(1, $this->orderBy, PDO::PARAM_STR, 10);
+        $stmt->bindParam(1, $this->ID_dokumentasi, PDO::PARAM_INT);
+
+        // $stmt->execute();
+        $stmt->execute();
+        return $stmt;
+     }
+
      public function getSatuFotoKegiatan()
      {
         $sqlQuery = "SELECT
